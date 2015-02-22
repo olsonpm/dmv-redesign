@@ -2,3 +2,4 @@ node_modules
 dev
 test
 prod
+src/client/app/templates.js

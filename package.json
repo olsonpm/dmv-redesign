@@ -6,7 +6,7 @@
     "angular-route": "./node_modules/angular-route/angular-route.js"
   },
   "scripts": {
-	"start": "ptr run-task build 'env=prod' && ptr run-task startServer 'env=prod'"
+	"start": "ptr run-task buildThenStartServer 'env=prod'"
   },
   "version": "0.1.0",
   "main": "index.js",
