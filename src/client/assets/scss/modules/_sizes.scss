@@ -1,0 +1,86 @@
+//-----------------//
+// Site-wide sizes //
+//-----------------//
+
+$max-size: 525;
+
+$tmp: 6;
+$content-pad: #{$tmp}vmin;
+$m_content-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+
+/* font sizes */
+
+$tmp: 8;
+$font-lv1: #{$tmp}vmin;
+$m_font-lv1: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 5;
+$font-lv2: #{$tmp}vmin;
+$m_font-lv2: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 4;
+$font-lv3: #{$tmp}vmin;
+$m_font-lv3: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 3.5;
+$font-lv4: #{$tmp}vmin;
+$m_font-lv4: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 3.2;
+$font-lv5: #{$tmp}vmin;
+$m_font-lv5: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 3;
+$font-lv6: #{$tmp}vmin;
+$m_font-lv6: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 2.8;
+$font-lv7: #{$tmp}vmin;
+$m_font-lv7: round($max-size * 0.01 * $tmp) * 1px;
+
+
+/* heading sizes */
+
+$tmp: 3.5;
+$h2-pad: #{$tmp}vmin;
+$m_h2-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 2.5;
+$h3-pad-top: #{$tmp}vmin;
+$m_h3-pad-top: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 1.5;
+$h3-pad-bot: #{$tmp}vmin;
+$m_h3-pad-bot: round($max-size * 0.01 * $tmp) * 1px;
+
+
+/* widget sizes */
+
+$tmp: 1.5;
+$foreground-vert-pad: #{$tmp}vmin;
+$m_foreground-vert-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 4;
+$foreground-hor-pad: #{$tmp}vmin;
+$m_foreground-hor-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 1;
+$note-vert-pad: #{$tmp}vmin;
+$m_note-vert-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 2;
+$note-hor-pad: #{$tmp}vmin;
+$m_note-hor-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 8;
+$ql-icon-size: #{$tmp}vmin;
+$m_ql-icon-size: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 8;
+$ql-padding: #{$tmp}vmin;
+$m_ql-padding: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 1.6;
+$ql-text-padding: #{$tmp}vmin;
+$m_ql-text-padding: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 1;
+$ql-fg-vert-padding: #{$tmp}vmin;
+$m_ql-fg-vert-padding: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 2;
+$ql-fg-hor-padding: #{$tmp}vmin;
+$m_ql-fg-hor-padding: round($max-size * 0.01 * $tmp) * 1px;

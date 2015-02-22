@@ -1,0 +1,141 @@
+//--------------------//
+// Size Declarations  //
+//--------------------//
+
+$tmp: 6;
+$footer-margin: #{$tmp}vmin;
+$m_footer-margin: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 6;
+$resource-height: #{$tmp}vmin;
+$m_resource-height: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 4;
+$footer-pad: #{$tmp}vmin;
+$m_footer-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 16;
+$contact-width: #{$tmp}vmin;
+$m_contact-width: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 6;
+$link-pad: #{$tmp}vmin;
+$m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+
+//-----//
+// Css //
+//-----//
+
+.site-wrapper > footer {
+	font-weight: 400;
+	color: $input;
+	margin-top: $footer-margin;
+	
+	> .more-resources
+	 , > .contact {
+		padding: 0 $content-pad;
+		
+		> h3 {
+			font-size: $font-lv2;
+			text-transform: uppercase;
+			padding-bottom: $footer-pad;
+		}
+	}
+	
+	> .more-resources {
+		display: inline-block;
+		width: 66.666%;
+		
+		li {
+			display: inline-block;
+			line-height: $resource-height;
+			width: 50%;
+		}
+	}
+	
+	> .contact {
+		vertical-align: top;
+		display: inline-block;
+		width: 33.333%;
+		
+		dt, dd {
+			float: left;
+			line-height: $resource-height;
+		}
+		
+		dt {
+			text-transform: uppercase;
+			clear: both;
+			width: $contact-width;
+			
+			&:after {
+				content: ":";
+			}
+		}
+	}
+	
+	> nav {
+		margin: $footer-margin $content-pad;
+		border-top: 1px solid $input;
+		padding: $footer-margin 0;
+		text-align: center;
+		
+		a {
+			color: $input;
+			padding: 0 $link-pad;
+			text-transform: uppercase;
+			font-size: $m_font-lv7;
+		}
+	}
+}
+
+
+//-----------------------//
+// Max Size Declarations //
+//-----------------------//
+
+@media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
+	.site-wrapper > footer {
+		margin-top: $m_footer-margin;
+		
+		> .more-resources
+		 , > .contact {
+			padding: 0 $m_content-pad;
+			
+			> h3 {
+				font-size: $m_font-lv2;
+				font-weight: 300;
+				padding-bottom: $m_footer-pad;
+			}
+		}
+		
+		> .more-resources {
+			border-right: 1px solid $input;
+			
+			li {
+				line-height: $m_resource-height;
+			}
+		}
+		
+		> .contact {
+			dt, dd {
+				line-height: $m_resource-height;
+			}
+		
+			dt {
+				width: $m_contact-width;
+			}
+		}
+		
+		> nav {
+			margin: $m_footer-margin $m_content-pad;
+			padding: $m_footer-margin 0;
+			
+			> a {
+				padding: 0 $m_link-pad;
+				font-size: $m_font-lv7;
+			}
+		}
+	}
+}

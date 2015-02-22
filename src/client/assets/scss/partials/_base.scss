@@ -1,0 +1,102 @@
+//-----------------------//
+// Set all to border-box //
+//-----------------------//
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+//--------------------------------------//
+// Get rid of dotted active link border //
+//--------------------------------------//
+
+:focus {
+    outline:0; /*removes the dotted border*/
+}
+input[type="text"] {
+	border: none;
+	padding: 0;
+}
+
+
+//----------//
+// Clearfix //
+//----------//
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+
+//---------------//
+// Reset margins //
+//---------------//
+
+h1, h2, h3, h4, h5, h6, input[type="text"], p, ul, ol, dl, dt, dd{
+	margin: 0;
+}
+
+
+//-----//
+// Css //
+//-----//
+
+a, a:visited, a:hover, a:active {
+	color: $primary;
+	text-decoration: none;
+}
+
+a.foreground {
+	display: inline-block;
+	background-color: $quaternary;
+	padding: $foreground-vert-pad $foreground-hor-pad;
+}
+
+.img {
+	background-color: blue;
+}
+
+ul, ol {
+	list-style-type: none;
+	padding: 0;
+}
+
+input {
+	color: $input-light;
+	
+	&:focus {
+		color: $input;
+	}	
+}
+
+body {
+	position: relative;
+	background-color: $primary;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	color: $primary;
+	
+	> .site-wrapper {
+		position: relative;
+		max-width: 1280px;
+		margin: 0 auto;
+	}
+}
+
+
+@media (min-width: 525px) and (min-height: 525px) {
+	body {
+		a.foreground {
+			padding: $m_foreground-vert-pad $m_foreground-hor-pad;
+		}
+	}
+}
