@@ -61,5 +61,8 @@
     "vinyl-fs": "^0.3.13",
     "vinyl-source-stream": "^1.0.0",
     "vinyl-transform": "^1.0.0"
+  },
+  "engines" : {
+	"node" : "0.10.36"
   }
 }
