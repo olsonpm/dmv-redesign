@@ -28,15 +28,24 @@ $m_more-bot-pad: round($max-size * 0.01 * $tmp) * 1px;
 $tmp: 2;
 $attn-pad: #{$tmp}vmin;
 $m_attn-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 12;
+$attn-note-margin: #{$tmp}vmin;
+$m_attn-note-margin: round($max-size * 0.01 * $tmp) * 1px;
 
 $tmp: 1;
 $announce-pad: #{$tmp}vmin;
 $m_announce-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 2;
+$announce-mobile-pad: #{$tmp}vmin;
+$m_announce-mobile-pad: round($max-size * 0.01 * $tmp) * 1px;
 $tmp: 3.5;
 $announce-archive-pad: #{$tmp}vmin;
 $m_announce-archive-pad: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 4.5;
+$announce-archive-mobile-pad: #{$tmp}vmin;
+$m_announce-archive-mobile-pad: round($max-size * 0.01 * $tmp) * 1px;
 
-$tmp: 15;
+$tmp: 20;
 $newsletter-img-height: #{$tmp}vmin;
 $m_newsletter-img-height: round($max-size * 0.01 * $tmp) * 1px;
 $tmp: 3;
@@ -123,11 +132,16 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 				font-size: $font-lv5;
 				padding: $more-top-pad 0 $more-bot-pad;
 			}
+			> a.foreground {
+				font-size: $font-lv4;
+				background-color: $quaternary;
+				text-transform: uppercase;
+			}
 		}
 		> .attention {
 			vertical-align: top;
 			float: right;
-			width: 23%;
+			width: 30%;
 			background-color: $ternary;
 			text-align: center;
 			padding: $attn-pad;
@@ -146,15 +160,10 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 				font-size: $font-lv6;
 			}
 		}
-		> a.foreground {
-			clear: both;
-			float: left;
-			background-color: $quaternary;
-			text-transform: uppercase;
-		}
 		> a.note {
-			font-size: $font-lv7;
+			font-size: $font-lv8;
 			float: right;
+			margin-top: $attn-note-margin;
 			background-color: $quaternary;
 			padding: $note-vert-pad $note-hor-pad;
 			text-transform: uppercase;
@@ -169,6 +178,10 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		li {
 			display: inline-block;
 			width: 25%;
+			
+			&:hover {
+				background-color: $quinternary-light;
+			}
 			
 			a {
 				display: block;
@@ -208,7 +221,7 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		h3 {
 			font-size: $font-lv2;
 			padding: $h3-pad-top 0 $h3-pad-bot;
-			border-bottom: 2px solid $primary;
+			border-bottom: 1px solid $primary;
 			text-transform: uppercase;
 		}
 		
@@ -236,7 +249,7 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 			> a {
 				text-transform: uppercase;
-				font-size: $font-lv5;
+				font-size: $font-lv4;
 				display: block;
 				padding: $announce-pad 0;
 			}
@@ -271,15 +284,23 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		}
 		> input {
 			padding: $newsletter-input-pad $input-hor-pad;
+			font-size: $font-lv4;
 		}
 		> a.foreground {
+			font-size: $font-lv4;
 			padding-left: $newsletter-signup-pad;
 			padding-right: $newsletter-signup-pad;
+			text-transform: uppercase;
 		}
 	}
 }
 
-@media (min-width: 525px) and (min-height: 525px) {
+
+//-----------------------//
+// Max Size Declarations //
+//-----------------------//
+
+@media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
 	.content.home {	
 		// first row
 		header {
@@ -321,9 +342,13 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			h2 {
 				font-size: $m_font-lv1;
 				
-				.more {
+				> .more {
 					font-size: $m_font-lv5;
 					padding: $m_more-top-pad 0  $m_more-bot-pad;
+				}
+				
+				> a.foreground {
+					font-size: $m_font-lv4;
 				}
 			}
 			
@@ -343,8 +368,9 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 			
 			a.note {
-				font-size: $m_font-lv7;
-				padding: $m_note-vert-pad $m_note-hor-pad;
+				font-size: $m_font-lv8;
+				padding: $m_note-vert-pad;
+				margin-top: $m_attn-note-margin;
 			}
 		}
 		
@@ -406,24 +432,162 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			padding-bottom: $m_newsletter-margin;
 			
 			.img {
-				height: $newsletter-img-height;
+				height: $m_newsletter-img-height;
 			}
 
 			> h3, > p, > input, > a.foreground {
 				margin: $m_newsletter-margin $m_content-pad;
 			}
-
-			> input {
-				padding: $m_newsletter-input-pad $m_input-hor-pad;
-			}
 			
 			> h3 {
 				font-size: $m_font-lv2;
 			}
+
+			> input {
+				padding: $m_newsletter-input-pad $m_input-hor-pad;
+				font-size: $m_font-lv4;
+			}
 			
 			a.foreground {
+				font-size: $m_font-lv4;
 				padding-left: $m_newsletter-signup-pad;
 				padding-right: $m_newsletter-signup-pad;
+			}
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
+	.content.home {
+		header .search {
+			display: none;
+		}
+		
+		.focal {
+			.attention, .note {
+				display: none;
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
+	.content.home {
+		header {
+			display: none;
+		}
+		
+		.focal {
+			padding: 0;
+			
+			> h2 {
+				padding: $h2-pad $content-pad;
+				display: block;
+				width: auto;
+				float: none;
+				text-align: center;
+			
+				> a.foreground {
+					font-size: $font-lv5;
+					vertical-align: top;
+				}
+			}
+		
+			> .attention {
+				display: block;
+				width: auto;
+				float: none;
+			}
+			
+			> a.note {
+				display: none;
+			}
+		}
+		
+		.quicklinks {
+			padding: 0;
+			border-bottom: 1px solid $primary;
+		
+			li {
+				width: 50%;
+				border-top: 1px solid $primary;
+				
+				&:nth-child(even) {
+					border-left: 1px solid $primary;
+				}
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			text-align: center;
+			border-bottom: 1px solid $primary;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			text-align: center;
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
 			}
 		}
 	}

@@ -24,7 +24,7 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 
 	> .img {
 		float: left;
-		width: 20%;
+		width: 20vw;
 		height: $header-height;
 		margin-left: $content-pad;
 		vertical-align: top;
@@ -45,6 +45,9 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 			height: $link-height;
 			line-height: $link-height;
 		}
+	}
+	> .mobile-nav {
+		display: none;
 	}
 }
 
@@ -69,6 +72,34 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 				padding: 0 $m_link-pad;
 				height: $m_link-height;
 				line-height: $m_link-height;
+			}
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
+	.site-wrapper > header {
+		> .img {
+			height: $header-height;
+		}
+	
+		nav {
+			display: none;
+		}
+		.mobile-menu {
+			display: inline-block;
+			float: right;
+			margin-right: $content-pad;
+			vertical-align: top;
+			
+			.img {
+				width: 20vw;
+				height: $header-height;
 			}
 		}
 	}

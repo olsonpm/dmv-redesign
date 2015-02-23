@@ -9,6 +9,9 @@ $m_footer-margin: round($max-size * 0.01 * $tmp) * 1px;
 $tmp: 6;
 $resource-height: #{$tmp}vmin;
 $m_resource-height: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 9;
+$resource-mobile-height: #{$tmp}vmin;
+$m_resource-mobile-height: round($max-size * 0.01 * $tmp) * 1px;
 
 $tmp: 4;
 $footer-pad: #{$tmp}vmin;
@@ -18,7 +21,11 @@ $tmp: 16;
 $contact-width: #{$tmp}vmin;
 $m_contact-width: round($max-size * 0.01 * $tmp) * 1px;
 
-$tmp: 6;
+$tmp: 1.5;
+$contact-pad: #{$tmp}vmin;
+$m_contact-pad: round($max-size * 0.01 * $tmp) * 1px;
+
+$tmp: 4;
 $link-pad: #{$tmp}vmin;
 $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 
@@ -30,11 +37,12 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 .site-wrapper > footer {
 	font-weight: 400;
 	color: $input;
-	margin-top: $footer-margin;
 	
 	> .more-resources
 	 , > .contact {
-		padding: 0 $content-pad;
+		margin-top: $footer-margin;
+		margin-bottom: $footer-margin;
+		padding-left: $content-pad;
 		
 		> h3 {
 			font-size: $font-lv2;
@@ -46,6 +54,7 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 	> .more-resources {
 		display: inline-block;
 		width: 66.666%;
+		border-right: 1px solid $input;
 		
 		li {
 			display: inline-block;
@@ -59,33 +68,33 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 		display: inline-block;
 		width: 33.333%;
 		
-		dt, dd {
-			float: left;
+		li {
 			line-height: $resource-height;
-		}
-		
-		dt {
-			text-transform: uppercase;
-			clear: both;
-			width: $contact-width;
 			
-			&:after {
-				content: ":";
+			.type {
+				text-transform: uppercase;
+				width: $contact-width;
+				font-size: $m_font-lv8;
+				
+				&:after {
+					content: ":";
+					margin-right: $contact-pad;
+				}
 			}
 		}
 	}
 	
 	> nav {
-		margin: $footer-margin $content-pad;
-		border-top: 1px solid $input;
+		margin: 0 $content-pad $footer-margin;
 		padding: $footer-margin 0;
+		border-top: 1px solid $input;
 		text-align: center;
 		
 		a {
 			color: $input;
 			padding: 0 $link-pad;
 			text-transform: uppercase;
-			font-size: $m_font-lv7;
+			font-size: $font-lv7;
 		}
 	}
 }
@@ -96,12 +105,12 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 //-----------------------//
 
 @media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
-	.site-wrapper > footer {
-		margin-top: $m_footer-margin;
-		
+	.site-wrapper > footer {		
 		> .more-resources
 		 , > .contact {
-			padding: 0 $m_content-pad;
+			margin-top: $m_footer-margin;
+			margin-bottom: $m_footer-margin;
+			padding-left: $m_content-pad;
 			
 			> h3 {
 				font-size: $m_font-lv2;
@@ -109,31 +118,105 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 		}
 		
-		> .more-resources {
-			border-right: 1px solid $input;
-			
+		> .more-resources {			
 			li {
 				line-height: $m_resource-height;
 			}
 		}
 		
 		> .contact {
-			dt, dd {
+			li {
 				line-height: $m_resource-height;
-			}
-		
-			dt {
-				width: $m_contact-width;
+				
+				.type {
+					width: $m_contact-width;
+					font-size: $m_font-lv8;
+					
+					&:after {
+						margin-right: $m_contact-pad;
+					}
+				}
 			}
 		}
 		
 		> nav {
-			margin: $m_footer-margin $m_content-pad;
+			margin: 0 $m_content-pad $m_footer-margin;
 			padding: $m_footer-margin 0;
 			
 			> a {
 				padding: 0 $m_link-pad;
 				font-size: $m_font-lv7;
+			}
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
+	.site-wrapper > footer {
+		> .more-resources
+		 , > .contact {
+		 
+			margin-left: $content-pad;
+			margin-right: $content-pad;
+			text-align: center;
+			display: block;
+			width: auto;
+			padding-left: 0;
+		}
+		
+		> .more-resources {
+			border-right: none;
+		}
+		
+		> .contact {
+			padding-top: $m_footer-margin;
+			border-top: 1px solid $input;
+		}
+	}
+}
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {	
+	.site-wrapper > footer {
+		> .more-resources
+		 , > .contact {
+		 
+			display: block;
+			width: auto;
+			text-align: center;
+			padding-left: 0;
+		}
+	
+		> .more-resources {
+			border-right: none;
+			margin-right: $content-pad;
+			margin-left: $content-pad;
+
+			li {
+				display: block;
+				width: 100%;
+				line-height: $resource-mobile-height;
+			}
+		}
+	
+		> .contact {
+			li {
+				line-height: $resource-mobile-height;
+			}
+		}
+		
+		> nav {
+			border-top: none;
+			background-color: $input-lightest;
+			margin: $footer-margin 0 0;
+		
+			> a {
+				display: block;
+				line-height: $resource-mobile-height;
 			}
 		}
 	}

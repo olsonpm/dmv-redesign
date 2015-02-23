@@ -1,22 +1,18 @@
 'use strict';
 
 
-    // generated requires (from angular generator)
-    
-        var initBuddySystem = require('buddy-system'); 
-    
-        var initHoverIntent = require('hoverintent-jqplugin'); 
-    // end of generated requires
-    
+// generated requires (from angular generator)
 
-function initSite($, $scope, log) { 
-        initBuddySystem($); 
-    
-        initHoverIntent($); 
+var initBuddySystem = require('buddy-system');
 
-    $(document).ready(function() {
-        runPerViewLoad($, log);
-    });
+var initHoverIntent = require('hoverintent-jqplugin');
+// end of generated requires
+
+
+function initSite($, $scope, log) {
+    initBuddySystem($);
+
+    initHoverIntent($);
 
     $scope.$on('$viewContentLoaded', function() {
         runPerViewLoad($, log);
@@ -27,10 +23,9 @@ function initSite($, $scope, log) {
 function runPerViewLoad($, log) {
     log.debug('page/view loaded!');
 
-    
-        // budySystem is a plugin that removes possibility of single words at the end of a paragraph
-        //  on the last line.
-        var res = $('p').buddySystem(); 
+    // budySystem is a plugin that removes possibility of single words at the end of a paragraph
+    //  on the last line.
+    var res = $('p').buddySystem();
 
     // disable :hover on touch devices
     // based on https://gist.github.com/4404503 

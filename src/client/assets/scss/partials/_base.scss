@@ -8,6 +8,7 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
   font-weight: inherit;
+  font-size: inherit;
 }
 
 //--------------------------------------//
@@ -84,7 +85,9 @@ body {
 	background-color: $primary;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
+	font-size: $font-lv6;
 	color: $primary;
+	overflow: hidden;
 	
 	> .site-wrapper {
 		position: relative;
@@ -94,10 +97,12 @@ body {
 }
 
 
-@media (min-width: 525px) and (min-height: 525px) {
+@media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
 	body {
 		a.foreground {
 			padding: $m_foreground-vert-pad $m_foreground-hor-pad;
 		}
+		
+		font-size: $m_font-lv6;
 	}
 }

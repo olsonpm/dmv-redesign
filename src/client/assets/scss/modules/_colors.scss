@@ -10,6 +10,7 @@ $ternary-light: lighten($ternary, 20%);
 $quaternary: #D69137; /*yellow*/
 $quaternary-dark: darken($quaternary, 20%);
 $quinternary: #3A3029; /*brown*/
-$quinternary-light: lighten($quinternary, 20%);
+$quinternary-light: lighten($quinternary, 15%);
 $input: #333;
 $input-light: lighten($input, 30%);
+$input-lightest: lighten($input, 68%);
