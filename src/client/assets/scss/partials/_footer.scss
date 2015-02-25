@@ -29,6 +29,10 @@ $tmp: 4;
 $link-pad: #{$tmp}vmin;
 $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 
+$tmp: 6;
+$social-media-pad: #{$tmp}vmin;
+$m_social-media-pad: round($max-size * 0.01 * $tmp) * 1px;
+
 
 //-----//
 // Css //
@@ -36,7 +40,7 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 
 .site-wrapper > footer {
 	font-weight: 400;
-	color: $input;
+	color: $bg-text;
 	
 	> .more-resources
 	 , > .contact {
@@ -54,7 +58,7 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 	> .more-resources {
 		display: inline-block;
 		width: 66.666%;
-		border-right: 1px solid $input;
+		border-right: 1px solid $bg-border;
 		
 		li {
 			display: inline-block;
@@ -82,19 +86,99 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 				}
 			}
 		}
+				
+		img {
+			display: inline-block;
+			margin-top: $footer-margin;
+			
+			& + img {
+				margin-left: $social-media-pad;
+			}
+		}
 	}
 	
 	> nav {
 		margin: 0 $content-pad $footer-margin;
 		padding: $footer-margin 0;
-		border-top: 1px solid $input;
+		border-top: 1px solid $bg-border;
 		text-align: center;
 		
 		a {
-			color: $input;
+			color: $bg-text;
 			padding: 0 $link-pad;
 			text-transform: uppercase;
-			font-size: $font-lv7;
+			font-size: $font-lv6;
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
+	.site-wrapper > footer {
+		> .more-resources
+		 , > .contact {
+		 
+			margin-left: $content-pad;
+			margin-right: $content-pad;
+			text-align: center;
+			display: block;
+			width: auto;
+			padding-left: 0;
+		}
+		
+		> .more-resources {
+			border-right: none;
+		}
+		
+		> .contact {
+			padding-top: $m_footer-margin;
+			border-top: 1px solid $bg-border;
+		}
+	}
+}
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {	
+	.site-wrapper > footer {
+		> .more-resources
+		 , > .contact {
+		 
+			display: block;
+			width: auto;
+			text-align: center;
+			padding-left: 0;
+		}
+	
+		> .more-resources {
+			border-right: none;
+			margin-right: $content-pad;
+			margin-left: $content-pad;
+
+			li {
+				display: block;
+				width: 100%;
+				line-height: $resource-mobile-height;
+			}
+		}
+	
+		> .contact {
+			li {
+				line-height: $resource-mobile-height;
+			}
+		}
+		
+		> nav {
+			border-top: none;
+			background-color: $bg;
+			margin: $footer-margin 0 0;
+		
+			> a {
+				display: block;
+				line-height: $resource-mobile-height;
+			}
 		}
 	}
 }
@@ -137,6 +221,14 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 					}
 				}
 			}
+				
+			img {
+				margin-top: $m_footer-margin;
+				
+				& + img {
+					margin-left: $m_social-media-pad;
+				}
+			}
 		}
 		
 		> nav {
@@ -145,78 +237,7 @@ $m_link-pad: round($max-size * 0.01 * $tmp) * 1px;
 			
 			> a {
 				padding: 0 $m_link-pad;
-				font-size: $m_font-lv7;
-			}
-		}
-	}
-}
-
-
-//------------//
-// Responsive //
-//------------//
-
-@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
-	.site-wrapper > footer {
-		> .more-resources
-		 , > .contact {
-		 
-			margin-left: $content-pad;
-			margin-right: $content-pad;
-			text-align: center;
-			display: block;
-			width: auto;
-			padding-left: 0;
-		}
-		
-		> .more-resources {
-			border-right: none;
-		}
-		
-		> .contact {
-			padding-top: $m_footer-margin;
-			border-top: 1px solid $input;
-		}
-	}
-}
-
-@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {	
-	.site-wrapper > footer {
-		> .more-resources
-		 , > .contact {
-		 
-			display: block;
-			width: auto;
-			text-align: center;
-			padding-left: 0;
-		}
-	
-		> .more-resources {
-			border-right: none;
-			margin-right: $content-pad;
-			margin-left: $content-pad;
-
-			li {
-				display: block;
-				width: 100%;
-				line-height: $resource-mobile-height;
-			}
-		}
-	
-		> .contact {
-			li {
-				line-height: $resource-mobile-height;
-			}
-		}
-		
-		> nav {
-			border-top: none;
-			background-color: $input-lightest;
-			margin: $footer-margin 0 0;
-		
-			> a {
-				display: block;
-				line-height: $resource-mobile-height;
+				font-size: $m_font-lv6;
 			}
 		}
 	}

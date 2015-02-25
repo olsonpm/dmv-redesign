@@ -61,6 +61,10 @@ a.foreground {
 	display: inline-block;
 	background-color: $quaternary;
 	padding: $foreground-vert-pad $foreground-hor-pad;
+	
+	&:hover {
+		background-color: $quaternary-dark;
+	}
 }
 
 .img {
@@ -96,6 +100,10 @@ body {
 	}
 }
 
+
+//-----------------------//
+// Max Size Declarations //
+//-----------------------//
 
 @media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
 	body {

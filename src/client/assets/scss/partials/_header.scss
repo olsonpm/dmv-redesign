@@ -2,9 +2,9 @@
 // Size Declarations  //
 //--------------------//
 
-$tmp: 20;
-$header-height: #{$tmp}vmin;
-$m_header-height: round($max-size * 0.01 * $tmp) * 1px;
+$tmp: 4;
+$header-margin: #{$tmp}vmin;
+$m_header-margin: round($max-size * 0.01 * $tmp) * 1px;
 
 $tmp: 4;
 $link-pad: #{$tmp}vmin;
@@ -14,6 +14,10 @@ $tmp: 6;
 $link-height: #{$tmp}vmin;
 $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 
+$tmp: 10;
+$logo-height: #{$tmp}vmin;
+$m_logo-height: round($max-size * 0.01 * $tmp) * 1px;
+
 
 //------//
 // Main //
@@ -22,12 +26,11 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 .site-wrapper > header {
 	vertical-align: top;
 
-	> .img {
+	> img {
 		float: left;
-		width: 20vw;
-		height: $header-height;
-		margin-left: $content-pad;
+		margin: $header-margin 0 $header-margin $content-pad;
 		vertical-align: top;
+		height: $logo-height;
 	}
 	> nav {
 		float: right;
@@ -44,10 +47,43 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 			padding: 0 $link-pad;
 			height: $link-height;
 			line-height: $link-height;
+			
+			&:hover {
+				background-color: $bg;
+			}
+			
+			img {
+				height: 13px;
+				margin-right: 10px;
+			}
 		}
 	}
-	> .mobile-nav {
+	> .mobile-menu {
 		display: none;
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
+	.site-wrapper > header {
+		nav {
+			display: none;
+		}
+		.mobile-menu {
+			display: inline-block;
+			float: right;
+			margin-right: $content-pad;
+			vertical-align: top;
+			
+			> img {
+				height: $logo-height;
+				margin: $header-margin 0 $header-margin $content-pad;
+			}
+		}
 	}
 }
 
@@ -58,10 +94,9 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 
 @media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
 	.site-wrapper > header {
-		> .img {
-			height: $m_header-height;
-			font-size: $m_font-lv2;
-			margin-left: $m_content-pad;
+		> img {
+			margin: $m_header-margin 0 $m_header-margin $m_content-pad;
+			height: $m_logo-height;
 		}
 		
 		> nav {
@@ -74,33 +109,9 @@ $m_link-height: round($max-size * 0.01 * $tmp) * 1px;
 				line-height: $m_link-height;
 			}
 		}
-	}
-}
-
-
-//------------//
-// Responsive //
-//------------//
-
-@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
-	.site-wrapper > header {
-		> .img {
-			height: $header-height;
-		}
-	
-		nav {
-			display: none;
-		}
-		.mobile-menu {
-			display: inline-block;
-			float: right;
-			margin-right: $content-pad;
-			vertical-align: top;
-			
-			.img {
-				width: 20vw;
-				height: $header-height;
-			}
+		.mobile-menu > img {
+			height: $m_logo-height; 
+			margin: $m_header-margin 0 $m_header-margin $m_content-pad;
 		}
 	}
 }

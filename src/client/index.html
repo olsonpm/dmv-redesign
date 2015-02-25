@@ -18,15 +18,15 @@
 <body ng-app="spicyDmv" ng-controller="ApplicationController">
     <div class="site-wrapper">
         <header class="cf">
-            <div class="img"></div><!---
+            <img src="img/logo.png" alt="DMV logo"><!---
             ---><nav><!---
-                ---><a href="#">Login</a><!---
+                ---><a href="#"><img src="img/login.png" alt="login icon">Login</a><!---
                 ---><a href="#">News</a><!---
                 ---><a href="#">About Us</a><!---
                 ---><a href="#">A-Z Index</a>
             </nav>
             <a href="#" class="mobile-menu">
-                <div class="img"></div>
+                <img src="img/mobile-menu.png" alt="mobile menu button">
             </a>
         </header>
 
@@ -54,8 +54,8 @@
                     <li><span class="type">Phone</span> 800.924.3570</li>
                     <li><span class="type">Email</span> Info@WisconsinDMV.com</li>
                 </ul>
-                <div class="fb img"></div>
-                <div class="twitter img"></div>
+                <img src="img/facebook.png" alt="facebook icon">
+                <img src="img/twitter.png" alt="twitter icon">
             </div>
             <nav>
                 <a href="#">Login</a>
@@ -69,14 +69,14 @@
     <!-- weinre
 	
 	Command
-	  weinre --httpPort 8081 --boundHost 10.0.0.21
+	  weinre --httpPort 8081 --boundHost <your ip here></your>
 	
 	Script
-	  <script src=" http://10.0.0.21:8081/target/target-script-min.js#anonymous "></script>
 	
 	-->
     <!-- inject:js -->
     <!-- endinject -->
+    <script src=" http://10.0.0.20:8081/target/target-script-min.js#anonymous "></script>
 </body>
 
 </html>

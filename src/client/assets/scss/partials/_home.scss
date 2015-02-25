@@ -25,7 +25,7 @@ $tmp: 4.5;
 $more-bot-pad: #{$tmp}vmin;
 $m_more-bot-pad: round($max-size * 0.01 * $tmp) * 1px;
 
-$tmp: 2;
+$tmp: 1.6;
 $attn-pad: #{$tmp}vmin;
 $m_attn-pad: round($max-size * 0.01 * $tmp) * 1px;
 $tmp: 12;
@@ -116,7 +116,7 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 	
 	// second row
 	.focal {
-		background-color: blue;
+		background: $secondary url('../img/focal.png') no-repeat;
 		padding: $h2-pad $content-pad;
 	
 		> h2 {
@@ -134,14 +134,13 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 			> a.foreground {
 				font-size: $font-lv4;
-				background-color: $quaternary;
 				text-transform: uppercase;
 			}
 		}
 		> .attention {
 			vertical-align: top;
 			float: right;
-			width: 30%;
+			width: 26%;
 			background-color: $ternary;
 			text-align: center;
 			padding: $attn-pad;
@@ -163,6 +162,7 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		> a.note {
 			font-size: $font-lv8;
 			float: right;
+			clear: right;
 			margin-top: $attn-note-margin;
 			background-color: $quaternary;
 			padding: $note-vert-pad $note-hor-pad;
@@ -266,11 +266,10 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		display: inline-block;
 		vertical-align: top;
 		padding-bottom: $newsletter-margin;
+		overflow: hidden;
 		
-		> .img {
-			background-color: blue;
+		> img {
 			display: block;
-			height: $newsletter-img-height;
 		}
 		> h3, > p, > input, > a.foreground {
 			margin: $newsletter-margin $content-pad;
@@ -291,6 +290,143 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			padding-left: $newsletter-signup-pad;
 			padding-right: $newsletter-signup-pad;
 			text-transform: uppercase;
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
+	.content.home {
+		header .search {
+			display: none;
+		}
+		
+		.focal {
+			.attention, .note {
+				display: none;
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			
+			> img {
+				display: none;
+			}			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+	}
+}
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
+	.content.home {
+		header {
+			display: none;
+		}
+		
+		.focal {
+			padding: 0;
+			
+			> h2 {
+				padding: $h2-pad $content-pad;
+				display: block;
+				width: auto;
+				float: none;
+				text-align: center;
+			
+				> a.foreground {
+					font-size: $font-lv5;
+					vertical-align: top;
+				}
+			}
+		
+			> .attention {
+				display: block;
+				width: auto;
+				float: none;
+			}
+			
+			> a.note {
+				display: none;
+			}
+		}
+		
+		.quicklinks {
+			padding: 0;
+			border-bottom: 1px solid $primary;
+		
+			li {
+				width: 50%;
+				border-top: 1px solid $primary;
+				
+				&:nth-child(even) {
+					border-left: 1px solid $primary;
+				}
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			text-align: center;
+			border-bottom: 1px solid $primary;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			text-align: center;
+			
+			> img {
+				display: none;
+			}
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
 		}
 	}
 }
@@ -452,142 +588,6 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 				font-size: $m_font-lv4;
 				padding-left: $m_newsletter-signup-pad;
 				padding-right: $m_newsletter-signup-pad;
-			}
-		}
-	}
-}
-
-
-//------------//
-// Responsive //
-//------------//
-
-@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
-	.content.home {
-		header .search {
-			display: none;
-		}
-		
-		.focal {
-			.attention, .note {
-				display: none;
-			}
-		}
-		
-		.announcements {
-			display: block;
-			width: auto;
-			
-			h3 {
-				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
-			}
-			
-			li {
-				padding: $h3-mobile-pad-bot 0;
-				
-				h4, p, a {
-					padding: $announce-mobile-pad 0;
-				}
-			}
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-		
-		.newsletter {
-			display: block;
-			width: auto;
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-	}
-}
-
-
-//------------//
-// Responsive //
-//------------//
-
-@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
-	.content.home {
-		header {
-			display: none;
-		}
-		
-		.focal {
-			padding: 0;
-			
-			> h2 {
-				padding: $h2-pad $content-pad;
-				display: block;
-				width: auto;
-				float: none;
-				text-align: center;
-			
-				> a.foreground {
-					font-size: $font-lv5;
-					vertical-align: top;
-				}
-			}
-		
-			> .attention {
-				display: block;
-				width: auto;
-				float: none;
-			}
-			
-			> a.note {
-				display: none;
-			}
-		}
-		
-		.quicklinks {
-			padding: 0;
-			border-bottom: 1px solid $primary;
-		
-			li {
-				width: 50%;
-				border-top: 1px solid $primary;
-				
-				&:nth-child(even) {
-					border-left: 1px solid $primary;
-				}
-			}
-		}
-		
-		.announcements {
-			display: block;
-			width: auto;
-			text-align: center;
-			border-bottom: 1px solid $primary;
-			
-			h3 {
-				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
-			}
-			
-			li {
-				padding: $h3-mobile-pad-bot 0;
-				
-				h4, p, a {
-					padding: $announce-mobile-pad 0;
-				}
-			}
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-		
-		.newsletter {
-			display: block;
-			width: auto;
-			text-align: center;
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
 			}
 		}
 	}

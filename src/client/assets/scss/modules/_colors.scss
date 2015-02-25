@@ -1,6 +1,6 @@
 $primary: white;
-$primary-dark: darken($primary, 20%);
-$primary-darkest: darken($primary, 50%);
+$primary-dark: darken($primary, 15%);
+$primary-darkest: darken($primary, 45%);
 $secondary: #404933; /*green*/
 $secondary-light: lighten($secondary, 15%);
 $secondary-lightest: lighten($secondary, 30%);
@@ -8,9 +8,11 @@ $ternary: #A4393A; /*red*/
 $ternary-dark: darken($ternary, 20%);
 $ternary-light: lighten($ternary, 20%);
 $quaternary: #D69137; /*yellow*/
-$quaternary-dark: darken($quaternary, 20%);
+$quaternary-dark: darken($quaternary, 5%);
 $quinternary: #3A3029; /*brown*/
-$quinternary-light: lighten($quinternary, 15%);
+$quinternary-light: #503E2B;
 $input: #333;
 $input-light: lighten($input, 30%);
-$input-lightest: lighten($input, 68%);
+$bg-text: #6D6D6D;
+$bg-border: #949494;
+$bg: #EAEAEA;
