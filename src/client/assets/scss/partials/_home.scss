@@ -59,7 +59,6 @@ $newsletter-signup-pad: #{$tmp}vmin;
 $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 
 
-
 //------//
 // Main //
 //------//
@@ -116,14 +115,18 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 	
 	// second row
 	.focal {
+		padding-top: $h2-pad;
+		padding-bottom: $h2-pad;
 		background: $secondary url('../img/focal.png') no-repeat;
-		padding: $h2-pad $content-pad;
 	
 		> h2 {
+			padding-left: $content-pad;
+			padding-right: $content-pad;
 			float: left;
 			width: 60%;
 			font-size: $font-lv1;
 			text-transform: uppercase;
+			
 			
 			> .more {
 				font-weight: 400;
@@ -138,6 +141,8 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 		}
 		> .attention {
+			margin-top: $h2-pad;
+			margin-right: $content-pad;
 			vertical-align: top;
 			float: right;
 			width: 26%;
@@ -160,6 +165,7 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 		}
 		> a.note {
+			margin-right: $content-pad;
 			font-size: $font-lv8;
 			float: right;
 			clear: right;
@@ -295,143 +301,6 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 }
 
 
-//------------//
-// Responsive //
-//------------//
-
-@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
-	.content.home {
-		header .search {
-			display: none;
-		}
-		
-		.focal {
-			.attention, .note {
-				display: none;
-			}
-		}
-		
-		.announcements {
-			display: block;
-			width: auto;
-			
-			h3 {
-				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
-			}
-			
-			li {
-				padding: $h3-mobile-pad-bot 0;
-				
-				h4, p, a {
-					padding: $announce-mobile-pad 0;
-				}
-			}
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-		
-		.newsletter {
-			display: block;
-			width: auto;
-			
-			> img {
-				display: none;
-			}			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-	}
-}
-
-@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
-	.content.home {
-		header {
-			display: none;
-		}
-		
-		.focal {
-			padding: 0;
-			
-			> h2 {
-				padding: $h2-pad $content-pad;
-				display: block;
-				width: auto;
-				float: none;
-				text-align: center;
-			
-				> a.foreground {
-					font-size: $font-lv5;
-					vertical-align: top;
-				}
-			}
-		
-			> .attention {
-				display: block;
-				width: auto;
-				float: none;
-			}
-			
-			> a.note {
-				display: none;
-			}
-		}
-		
-		.quicklinks {
-			padding: 0;
-			border-bottom: 1px solid $primary;
-		
-			li {
-				width: 50%;
-				border-top: 1px solid $primary;
-				
-				&:nth-child(even) {
-					border-left: 1px solid $primary;
-				}
-			}
-		}
-		
-		.announcements {
-			display: block;
-			width: auto;
-			text-align: center;
-			border-bottom: 1px solid $primary;
-			
-			h3 {
-				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
-			}
-			
-			li {
-				padding: $h3-mobile-pad-bot 0;
-				
-				h4, p, a {
-					padding: $announce-mobile-pad 0;
-				}
-			}
-			
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-		
-		.newsletter {
-			display: block;
-			width: auto;
-			text-align: center;
-			
-			> img {
-				display: none;
-			}
-			a.foreground {
-				margin: $announce-archive-mobile-pad 0;
-			}
-		}
-	}
-}
-
-
 //-----------------------//
 // Max Size Declarations //
 //-----------------------//
@@ -473,9 +342,12 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 		
 		// second row
 		.focal {
-			padding: $m_h2-pad $m_content-pad;
+			padding-top: $m_h2-pad;
+			padding-bottom: $m_h2-pad;
 			
 			h2 {
+				padding-left: $m_content-pad;
+				padding-right: $m_content-pad;
 				font-size: $m_font-lv1;
 				
 				> .more {
@@ -489,6 +361,8 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 			
 			.attention {
+				margin-left: $m_content-pad;
+				margin-right: $m_content-pad;
 				margin-top: $m_h2-pad;
 				
 				> h3 {
@@ -504,6 +378,8 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 			}
 			
 			a.note {
+				margin-left: $m_content-pad;
+				margin-right: $m_content-pad;
 				font-size: $m_font-lv8;
 				padding: $m_note-vert-pad;
 				margin-top: $m_attn-note-margin;
@@ -588,6 +464,145 @@ $m_newsletter-signup-pad: round($max-size * 0.01 * $tmp) * 1px;
 				font-size: $m_font-lv4;
 				padding-left: $m_newsletter-signup-pad;
 				padding-right: $m_newsletter-signup-pad;
+			}
+		}
+	}
+}
+
+
+//------------//
+// Responsive //
+//------------//
+
+@media (max-width: #{$responsive-lg}px) and (max-height: #{$responsive-lg}px) {
+	.content.home {
+		header .search {
+			display: none;
+		}
+		
+		.focal {
+			.note {
+				display: none;
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			
+			> img {
+				display: none;
+			}			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+	}
+}
+
+@media (max-width: #{$responsive-sm}px) and (max-height: #{$responsive-sm}px) {
+	.content.home {
+		header {
+			display: none;
+		}
+		
+		.focal {
+			padding: 0;
+		
+			> h2 {
+				padding: $h2-pad $content-pad;
+				display: block;
+				width: auto;
+				float: none;
+				text-align: center;
+			
+				> a.foreground {
+					vertical-align: top;
+				}
+			}
+		
+			> .attention {
+				border-top: 1px solid $primary;
+				margin: 0;
+				display: block;
+				width: auto;
+				float: none;
+			}
+			
+			> a.note {
+				margin: 0;
+				display: none;
+			}
+		}
+		
+		.quicklinks {
+			padding: 0;
+			border-bottom: 1px solid $primary;
+		
+			li {
+				width: 50%;
+				border-top: 1px solid $primary;
+				
+				&:nth-child(even) {
+					border-left: 1px solid $primary;
+				}
+			}
+		}
+		
+		.announcements {
+			display: block;
+			width: auto;
+			text-align: center;
+			border-bottom: 1px solid $primary;
+			
+			h3 {
+				padding: $h3-mobile-pad-top 0 $h3-mobile-pad-bot;
+			}
+			
+			li {
+				padding: $h3-mobile-pad-bot 0;
+				
+				h4, p, a {
+					padding: $announce-mobile-pad 0;
+				}
+			}
+			
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
+			}
+		}
+		
+		.newsletter {
+			display: block;
+			width: auto;
+			text-align: center;
+			
+			> img {
+				display: none;
+			}
+			a.foreground {
+				margin: $announce-archive-mobile-pad 0;
 			}
 		}
 	}

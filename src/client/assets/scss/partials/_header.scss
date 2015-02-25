@@ -31,6 +31,7 @@ $m_logo-height: round($max-size * 0.01 * $tmp) * 1px;
 		margin: $header-margin 0 $header-margin $content-pad;
 		vertical-align: top;
 		height: $logo-height;
+		max-height: $m_logo-height;
 	}
 	> nav {
 		float: right;
@@ -59,7 +60,42 @@ $m_logo-height: round($max-size * 0.01 * $tmp) * 1px;
 		}
 	}
 	> .mobile-menu {
+		float: right;
 		display: none;
+		
+		> img {
+			vertical-align: top;
+			height: $logo-height;
+			max-height: $m_logo-height;
+			margin: $header-margin $content-pad;
+		}
+	}
+}
+
+
+//-----------------------//
+// Max Size Declarations //
+//-----------------------//
+
+@media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
+	.site-wrapper > header {
+		> img {
+			margin: $m_header-margin 0 $m_header-margin $m_content-pad;
+		}
+		
+		> nav {
+			margin-right: $m_content-pad;
+		
+			> a {
+				font-size: $m_font-lv6;
+				padding: 0 $m_link-pad;
+				height: $m_link-height;
+				line-height: $m_link-height;
+			}
+		}
+		.mobile-menu > img {
+			margin: $m_header-margin $m_content-pad;
+		}
 	}
 }
 
@@ -75,43 +111,6 @@ $m_logo-height: round($max-size * 0.01 * $tmp) * 1px;
 		}
 		.mobile-menu {
 			display: inline-block;
-			float: right;
-			margin-right: $content-pad;
-			vertical-align: top;
-			
-			> img {
-				height: $logo-height;
-				margin: $header-margin 0 $header-margin $content-pad;
-			}
-		}
-	}
-}
-
-
-//-----------------------//
-// Max Size Declarations //
-//-----------------------//
-
-@media (min-width: #{$max-size}px) and (min-height: #{$max-size}px) {
-	.site-wrapper > header {
-		> img {
-			margin: $m_header-margin 0 $m_header-margin $m_content-pad;
-			height: $m_logo-height;
-		}
-		
-		> nav {
-			margin-right: $m_content-pad;
-		
-			> a {
-				font-size: $m_font-lv6;
-				padding: 0 $m_link-pad;
-				height: $m_link-height;
-				line-height: $m_link-height;
-			}
-		}
-		.mobile-menu > img {
-			height: $m_logo-height; 
-			margin: $m_header-margin 0 $m_header-margin $m_content-pad;
 		}
 	}
 }
