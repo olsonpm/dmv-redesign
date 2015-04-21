@@ -5,40 +5,30 @@
 //---------//
 
 var angular = require('angular')
-    , nh = require('node-helpers')
-    , bunyan = require('bunyan')
-    , config = require('../../../package.json')
-    , path = require('path');
-
-var BunyanStreams = nh.BunyanStreams;
-var curEnv = (new nh.Environment()).curEnv();
+    , nh = require('node-helpers');
 
 
 //------//
 // Init //
 //------//
 
-var appName = "spicyDmv";
-var bstream = BunyanStreams(appName, curEnv);
-var log = bunyan.createLogger({
-    name: appName
-    , src: bstream.source
-    , streams: [{
-        level: bstream.level
-        , stream: bstream.stream
-        , type: bstream.type
-    }]
-});
+var appName = "dmvRedesign";
+var envInst = new nh.Environment();
+var log = new nh.LogProvider()
+    .AppName(appName)
+    .getLogger();
 
-var app = angular.module('spicyDmv', [require('angular-route')]);
+var app = angular.module(appName, [require('angular-route')]);
+
 // load the template cache
 require('./templates');
+
 
 //------------//
 // Add Routes //
 //------------//
 
-require('./routes')(app, curEnv);
+require('./routes')(app, envInst.curEnv());
 
 
 //-----------------//

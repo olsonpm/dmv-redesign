@@ -1,26 +1,23 @@
 'use strict';
 
+var $ = require('jquery');
 
 // generated requires (from angular generator)
-
 var initBuddySystem = require('buddy-system');
-
 var initHoverIntent = require('hoverintent-jqplugin');
 // end of generated requires
 
-
-function initSite($, $scope, log) {
+function initSite($scope, log) {
     initBuddySystem($);
-
     initHoverIntent($);
 
     $scope.$on('$viewContentLoaded', function() {
-        runPerViewLoad($, log);
+        runPerViewLoad(log);
     });
 }
 
 // This gets rid of all hover styles
-function runPerViewLoad($, log) {
+function runPerViewLoad(log) {
     log.debug('page/view loaded!');
 
     // budySystem is a plugin that removes possibility of single words at the end of a paragraph

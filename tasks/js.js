@@ -73,7 +73,7 @@ var jsBuild = new PromiseTask()
                 vFs.src(path.join(srcApp, '**/*.html'))
                 .pipe(templateCache('templates.js', {
                     moduleSystem: 'Browserify'
-                    , module: 'spicyDmv'
+                    , module: 'dmvRedesign'
                     , root: path.join(env.curEnv(), 'app')
                 }))
                 .pipe(vFs.dest(srcApp))

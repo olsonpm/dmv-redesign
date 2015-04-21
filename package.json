@@ -6,12 +6,12 @@
     "angular-route": "./node_modules/angular-route/angular-route.js"
   },
   "scripts": {
-	"start": "ptr run-task buildThenStartServer 'env=prod'"
+    "start": "ptr run-task buildThenStartServer 'env=prod'"
   },
   "version": "0.1.0",
   "main": "index.js",
   "license": "ISC",
-  "name": "spicy-dmv",
+  "name": "dmv-redesign",
   "browserify": {
     "transform": "browserify-shim"
   },
@@ -49,7 +49,7 @@
     "mkdirp": "^0.5.0",
     "ncp": "^1.0.1",
     "node-helpers": "git://github.com/olsonpm/node-helpers.git",
-    "node-sass-bluebird": "git://github.com/olsonpm/node-sass-bluebird.git",
+    "node-sass": "git://github.com/sass/node-sass.git",
     "normalize.scss": "git://github.com/olsonpm/normalize.scss.git",
     "promise-task-runner": "0.0.2",
     "rimraf": "^2.2.8",
@@ -62,7 +62,10 @@
     "vinyl-source-stream": "^1.0.0",
     "vinyl-transform": "^1.0.0"
   },
-  "engines" : {
-	"node" : "0.10.36"
+  "engines": {
+    "node": "0.12.*"
+  },
+  "environment": {
+    "env_var_name": "WEATHER_ACCURACY_NODE_ENV"
   }
 }
