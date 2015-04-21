@@ -37,7 +37,9 @@ var PromiseTask = ptr.PromiseTask
 
 var srcClientHtml = 'src/client/**/*.html';
 var srcHtml = 'src/client/index.html';
-var ENVIRONMENT_VARIABLE_DEPENDENCIES = [];
+var ENVIRONMENT_VARIABLE_DEPENDENCIES = [
+    "DMV_REDESIGN_NODE_ENV"
+];
 var addRoutes = require('../src/server/routes');
 var lrOptions = {
     host: 'localhost'
