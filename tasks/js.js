@@ -18,7 +18,6 @@ var bPromise = require('bluebird')
     , ptr = require('promise-task-runner')
     , streamToPromise = require('stream-to-promise')
     , through2 = require('through2')
-    , uglifyStream = require('uglify-stream')
     , vFs = require('vinyl-fs')
     , vss = require('vinyl-source-stream')
     , VTransform = require('vinyl-transform')
@@ -77,15 +76,21 @@ var jsBuild = new PromiseTask()
                 .pipe(vFs.dest(srcApp))
             )
             .then(function() { // then run everything through browserify
-                var bundledStream = browserify(fileIn)
-                    .bundle();
+                var bundler = browserify({
+                    debug: true
+                });
+                bundler.add(fileIn);
 
-                if (envInst.isProd()) { // and if prod, uglify
-                    bundledStream = bundledStream.pipe(uglifyStream());
+                if (envInst.isProd()) { // and if prod, minifyify
+                    bundler.plugin('minifyify', {
+                        output: path.join(envInst.curEnv(), 'index.map.js')
+                        , map: 'index.map.js'
+                    });
                 }
 
                 return streamToPromise(
-                    bundledStream.pipe(vss(getJsOut(envInst)))
+                    bundler.bundle()
+                    .pipe(vss(getJsOut(envInst)))
                     .pipe(replaceENV(envInst))
                     .pipe(vFs.dest(envInst.curEnv()))
                 );
@@ -98,7 +103,7 @@ var jsWatch = new PromiseTask()
         var self = this;
         var envInst = new Environment()
             .HardCoded(this.globalArgs().env);
-            
+
         var watcher = vFs.watch(path.join(srcApp, "**/!(templates.js).js"));
 
         var destJs = path.join(envInst.curEnv(), getJsOut(envInst));
