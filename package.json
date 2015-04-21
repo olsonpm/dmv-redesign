@@ -49,7 +49,7 @@
     "mkdirp": "^0.5.0",
     "ncp": "^1.0.1",
     "node-helpers": "git://github.com/olsonpm/node-helpers.git",
-    "node-sass": "git://github.com/sass/node-sass.git",
+    "node-sass": "git://github.com/sass/node-sass.git#v3.0.0-beta.5",
     "normalize.scss": "git://github.com/olsonpm/normalize.scss.git",
     "promise-task-runner": "0.0.2",
     "rimraf": "^2.2.8",
