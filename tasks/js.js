@@ -50,11 +50,10 @@ var lrOptions = {
 var jsClean = new PromiseTask()
     .id('jsClean')
     .task(function() {
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
 
-        return bRimraf(getJsOutFull(env));
+        return bRimraf(getJsOutFull(envInst));
     });
 
 var jsBuild = new PromiseTask()
@@ -62,9 +61,8 @@ var jsBuild = new PromiseTask()
     .dependencies(jsClean)
     .task(function() {
         console.log('jsBuild');
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
 
         // ./ added explicitly to avoid browserify bug
         var fileIn = './' + path.join(srcApp, 'index.js');
@@ -74,7 +72,7 @@ var jsBuild = new PromiseTask()
                 .pipe(templateCache('templates.js', {
                     moduleSystem: 'Browserify'
                     , module: 'dmvRedesign'
-                    , root: path.join(env.curEnv(), 'app')
+                    , root: path.join(envInst.curEnv(), 'app')
                 }))
                 .pipe(vFs.dest(srcApp))
             )
@@ -82,14 +80,14 @@ var jsBuild = new PromiseTask()
                 var bundledStream = browserify(fileIn)
                     .bundle();
 
-                if (env.isProd()) { // and if prod, uglify
+                if (envInst.isProd()) { // and if prod, uglify
                     bundledStream = bundledStream.pipe(uglifyStream());
                 }
 
                 return streamToPromise(
-                    bundledStream.pipe(vss(getJsOut(env)))
-                    .pipe(replaceENV(env))
-                    .pipe(vFs.dest(env.curEnv()))
+                    bundledStream.pipe(vss(getJsOut(envInst)))
+                    .pipe(replaceENV(envInst))
+                    .pipe(vFs.dest(envInst.curEnv()))
                 );
             });
     });
@@ -98,12 +96,12 @@ var jsWatch = new PromiseTask()
     .id('jsWatch')
     .task(function() {
         var self = this;
-        var env = new Environment({
-            hardCoded: self.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+            
         var watcher = vFs.watch(path.join(srcApp, "**/!(templates.js).js"));
 
-        var destJs = path.join(env.curEnv(), getJsOut(env));
+        var destJs = path.join(envInst.curEnv(), getJsOut(envInst));
         watcher.on('change', function(fpath) {
             console.log('jsWatch');
             jsBuild
@@ -121,22 +119,22 @@ var jsWatch = new PromiseTask()
 //---------//
 
 // replaced ENV_NODE_ENV in order to have environment-specific behavior on the front-end
-function replaceENV(env) {
+function replaceENV(envInst) {
     return new VTransform(function(filename) {
         return through2.obj(function(chunk, enc, cb) {
-            cb(null, chunk.toString().replace("ENV_NODE_ENV", env.curEnv()));
+            cb(null, chunk.toString().replace("ENV_NODE_ENV", envInst.curEnv()));
         });
     });
 }
 
-function getJsOut(env) {
-    return (env.isProd())
+function getJsOut(envInst) {
+    return (envInst.isProd())
         ? 'index.min.js'
         : 'index.js';
 }
 
-function getJsOutFull(env) {
-    return path.join(process.cwd(), getJsOut(env));
+function getJsOutFull(envInst) {
+    return path.join(process.cwd(), getJsOut(envInst));
 }
 
 

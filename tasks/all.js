@@ -63,10 +63,10 @@ var allTasks = new PromiseTaskContainer()
 var clean = new PromiseTask()
     .id('clean')
     .task(function() {
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
-        var envPath = path.join(process.cwd(), env.curEnv());
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
+        var envPath = path.join(process.cwd(), envInst.curEnv());
         return bRimraf(envPath)
             .then(function() {
                 return bMkdirp(envPath);
@@ -92,13 +92,13 @@ var build = new PromiseTask()
     .dependencies(cleanThenBuildAll)
     .task(function() {
         console.log('build');
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
         return streamToPromise(
             vFs.src(srcHtml)
-            .pipe(injector(env))
-            .pipe(vFs.dest(env.curEnv()))
+            .pipe(injector(envInst))
+            .pipe(vFs.dest(envInst.curEnv()))
         );
     });
 
@@ -106,9 +106,9 @@ var htmlWatch = new PromiseTask()
     .id('htmlWatch')
     .task(function() {
         var self = this;
-        var env = new Environment({
-            hardCoded: self.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
         var watcher = vFs.watch(srcClientHtml);
         watcher.on('change', function(fpath) {
             try {
@@ -140,30 +140,29 @@ var watchAll = new PromiseTask()
 var startServer = new PromiseTask()
     .id('startServer')
     .task(function() {
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
         checkEnvVars();
 
         var app = express();
         app.use(compression());
 
-        app.use(express.static(path.join(env.curEnv())));
+        app.use(express.static(path.join(envInst.curEnv())));
 
-        addRoutes(app, env.curEnv(), process.cwd());
+        addRoutes(app, envInst.curEnv(), process.cwd());
 
         var port = process.env.PORT || 5000;
         app.listen(port);
-        console.log("" + env.curEnv() + " server listening on port " + port);
+        console.log("" + envInst.curEnv() + " server listening on port " + port);
     });
 
 var buildThenStartServer = new PromiseTask()
     .id('buildThenStartServer')
     .task(function() {
         var self = this;
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
 
         return build.run()
             .then(function() {
@@ -184,18 +183,18 @@ var startLr = new PromiseTask()
 // Helper Fxns //
 //-------------//
 
-function injector(env) {
-    var curEnv = env.curEnv();
+function injector(envInst) {
+    var curEnv = envInst.curEnv();
     return new vTransform(function(filename) {
         var cssInject = "<!-- inject:css -->";
         var jsInject = "<!-- inject:js -->";
         var endInject = "<!-- endinject -->";
 
-        var indexCssRel = env.isProd()
+        var indexCssRel = envInst.isProd()
             ? "css/index.min.css"
             : "css/index.css";
 
-        var indexJsRel = env.isProd()
+        var indexJsRel = envInst.isProd()
             ? "index.min.js"
             : "index.js";
 

@@ -42,10 +42,10 @@ var lrOptions = {
 var fontsClean = new PromiseTask()
     .id('fontsClean')
     .task(function() {
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
-        var fontsPath = path.join(process.cwd(), env.curEnv(), FONTS_DIR);
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
+        var fontsPath = path.join(process.cwd(), envInst.curEnv(), FONTS_DIR);
 
         return bRimraf(fontsPath)
             .then(function() {
@@ -57,13 +57,12 @@ var fontsBuild = new PromiseTask()
     .id('fontsBuild')
     .dependencies(fontsClean)
     .task(function() {
-        var env = new Environment({
-            hardCoded: this.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
 
         return streamToPromise(
             vFs.src(path.join(srcFonts, '*'))
-            .pipe(vFs.dest(path.join(env.curEnv(), FONTS_DIR)))
+            .pipe(vFs.dest(path.join(envInst.curEnv(), FONTS_DIR)))
         );
     });
 
@@ -71,13 +70,13 @@ var fontsWatch = new PromiseTask()
     .id('fontsWatch')
     .task(function() {
         var self = this;
-        var env = new Environment({
-            hardCoded: self.globalArgs().env
-        });
+        var envInst = new Environment()
+            .HardCoded(this.globalArgs().env);
+
         var watcher = vFs.watch(srcFonts);
         watcher.on('change', function(fpath) {
             try {
-                var changePath = path.join(env.curEnv(), FONTS_DIR, path.basename(fpath));
+                var changePath = path.join(envInst.curEnv(), FONTS_DIR, path.basename(fpath));
                 console.log('changed: ' + changePath);
                 fontsBuild
                     .globalArgs(self.globalArgs())
